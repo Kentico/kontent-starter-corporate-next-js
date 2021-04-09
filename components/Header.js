@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import get from "lodash.get";
 import { Action, Image, Link, SideDrawer } from ".";
 import { Container, Hidden } from "@material-ui/core";
-
+import MaterialUISearch from "./search/MaterialUISearch";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +46,7 @@ function Header(props) {
             </Link>
             <Hidden smDown>
               <div className={classes.mainMenu}>
+                <MaterialUISearch {...props}/>
                 {get(props, "data.config.main_menu.value[0].actions.value", []).map((navigationItem, index) => (
                   <Action key={index} action={navigationItem} {...props} />
                 ))}

@@ -2,11 +2,12 @@ import React from "react";
 import get from "lodash.get";
 import { Image, Link } from "..";
 import { useTheme } from "@material-ui/core";
+import { getUrlFromMapping } from "../../utils";
 
 function Post(props) {
-  let post = get(props, "item", null);
-  let columnCount = get(props, "columnCount", 1);
-  let postUrl = "/blog/" + get(post, "slug.value", "#");
+  const post = get(props, "item", null);
+  const columnCount = get(props, "columnCount", 1);
+  const postUrl = getUrlFromMapping(get(props, "data.mappings", []), get(post, "system.codename")) || "#";
 
   const theme = useTheme();
   const imageSizes = `(min-width: ${theme.breakpoints.values.md}px) ${Math.floor(100 / columnCount)}vw, 100vw`;
